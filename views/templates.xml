@@ -1,0 +1,52 @@
+<odoo>
+  <data>
+    <!-- Report Action -->
+    <record id="print_report_action" model="ir.actions.report">
+      <field name="name">Course PDF</field>
+      <field name="model">courses</field>
+      <field name="report_type">qweb-pdf</field>
+      <field name="report_name">courses.course_report_document</field>
+      <field name="report_file">courses.course_report_document</field>
+      <field name="print_report_name">'%s' % object.name</field>
+      <field name="binding_model_id" ref="model_courses"/>
+      <field name="binding_type">report</field>
+    </record>
+
+    <!-- QWeb Template -->
+    <template id="course_report_document">
+      <t t-call="web.html_container">
+        <t t-call="web.external_layout">
+          <t t-foreach="docs" t-as="doc">
+            <div class="page">
+              <h2>Course: <span t-field="doc.name"/></h2>
+              <p>Teacher: <span t-field="doc.teacher_id"/></p>
+              <p>Start Date: <span t-field="doc.start_date"/></p>
+              <p>End Date: <span t-field="doc.end_date"/></p>
+              <p>Cost: <span t-field="doc.cost"/></p>
+
+              <h3>Enrollments</h3>
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th>Student</th>
+                    <th>Date</th>
+                    <th>Cost</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <t t-foreach="doc.enrollment_id" t-as="enroll">
+                    <tr>
+                      <td><span t-field="enroll.student_id"/></td>
+                      <td><span t-field="enroll.date"/></td>
+                      <td><span t-field="enroll.cost"/></td>
+                    </tr>
+                  </t>
+                </tbody>
+              </table>
+            </div>
+          </t>
+        </t>
+      </t>
+    </template>
+  </data>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_courses,courses.courses,model_courses,base.group_user,1,1,1,1
+access_student,student,model_student,base.group_user,1,1,1,1
+access_enrollment,enrollment,model_enrollment,base.group_user,1,1,1,1
+access_course_close_wizard,course.close.wizard,model_course_close_wizard,base.group_user,1,1,1,1
